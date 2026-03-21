@@ -2,7 +2,7 @@
 
 A clean, responsive, single-page CV website for **Panagiotis (Panos) Dimitrakopoulos** — built with vanilla HTML, CSS, and JavaScript. No build step required. All CV content is stored in a single `cv.yaml` file, making updates effortless.
 
-🔗 **Live site:** [panosdimi.github.io/cv](https://panosdimi.github.io/cv/)
+🔗 **Live site:** [panosdimitrakopoulos.github.io/cv](https://panosdimitrakopoulos.github.io/cv/)
 
 ---
 
