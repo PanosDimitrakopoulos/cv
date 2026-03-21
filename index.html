@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+
+    <!-- Favicon & Theme -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="panos-dimitrakop-favicon" href="panos-dimitrakop-icon.png">
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-semibold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- js-yaml: parses cv.yaml directly in the browser, no build step needed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
+    <style>
+        #cv-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            font-size: 1rem;
+            color: var(--color-text-muted);
+        }
+        #cv-error {
+            display: none;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 24px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            color: #991b1b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        #cv-error code {
+            background: #fee2e2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="action-btn" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg id="sun-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <button class="action-btn" id="download-pdf" title="Download as PDF" aria-label="Download as PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+        <button class="action-btn" id="share-btn" title="Share" aria-label="Share this CV">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+    </div>
+
+    <main class="container" id="cv-root">
+        <div id="cv-loading">Loading CV…</div>
+        <div id="cv-error">
+            <strong>⚠️ Could not load cv.yaml</strong><br><br>
+            Browsers block local file requests for security reasons, so
+            <code>index.html</code> must be served over HTTP — not opened directly as a file.<br><br>
+            <strong>Option 1 — VS Code (recommended):</strong><br>
+            Install the <em>Live Server</em> extension, then right-click
+            <code>index.html</code> → <em>Open with Live Server</em>.<br><br>
+            <strong>Option 2 — Python (one command):</strong><br>
+            Open a terminal inside this folder and run:<br>
+            <code>python -m http.server 8000</code><br>
+            Then visit <code>http://localhost:8000</code> in your browser.<br><br>
+            <strong>Option 3 — GitHub Pages / any web host:</strong><br>
+            Upload the whole folder and visit the URL — works perfectly online.
+        </div>
+    </main>
+
+    <script>
+    // ── SVG icons ─────────────────────────────────────────────────────────────
+    const ICONS = {
+        email:    `<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+        mobile:   `<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>`,
+        linkedin: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+        github:   `<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>`,
+        linktree: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m16 6-4 4-4-4"/><path d="M12 10v12"/></svg>`,
+        location: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    };
+
+    const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const DIV = `<span class="divider">|</span>`;
+
+    // ── section builders ───────────────────────────────────────────────────────
+
+    function contactBar(c, personal) {
+        const parts = [];
+        if (c.email)
+            parts.push(`<a href="mailto:${esc(c.email)}">${ICONS.email} ${esc(c.email)}</a>`);
+        if (c.mobile)
+            parts.push(`<a href="tel:${esc(c.mobile.replace(/\s/g,''))}">${ICONS.mobile} ${esc(c.mobile)}</a>`);
+        if (c.linkedin?.url)
+            parts.push(`<a href="${esc(c.linkedin.url)}" target="_blank" rel="noopener noreferrer">${ICONS.linkedin} ${esc(c.linkedin.label)}</a>`);
+        if (c.github?.url)
+            parts.push(`<a href="${esc(c.github.url)}" target="_blank" rel="noopener noreferrer">${ICONS.github} ${esc(c.github.label)}</a>`);
+        if (c.linktree?.url)
+            parts.push(`<a href="${esc(c.linktree.url)}" target="_blank" rel="noopener noreferrer">${ICONS.linktree} ${esc(c.linktree.label)}</a>`);
+        const contactLinks = parts.join(DIV);
+        const location = personal.location ? `<span class="location">${ICONS.location} ${esc(personal.location)}</span>` : '';
+        return contactLinks + location;
+    }
+
+    function experience(list) {
+        return (list || []).map(job => {
+            const clients = job.clients || [];
+            const hasClients = clients.length > 0;
+
+            // Subtitle: always show if company is set
+            const sub = job.location ? `${esc(job.company)} · ${esc(job.location)}` : esc(job.company);
+            const subtitleHtml = job.company
+                ? `<p class="entry-subtitle">${sub}</p>` : '';
+
+            // Client bar: eFood (Nov 2019 - Apr 2022) · On-Site | Vodafone ...
+            let clientsHtml = '';
+            if (hasClients) {
+                const pills = clients.map(cl => {
+                    const loc = cl.location ? `<span class="client-loc">${esc(cl.location)}</span>` : '';
+                    return `<span class="client-pill">
+                        <span class="client-name">${esc(cl.name)}</span>
+                        <span class="client-dates">${esc(cl.dates)}</span>
+                        ${loc}
+                    </span>`;
+                }).join('<span class="client-divider">|</span>');
+                clientsHtml = `<div class="client-bar">${pills}</div>`;
+            }
+
+            let body = '';
+            if (job.bullets) {
+                body = `<ul class="entry-details">${job.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`;
+            } else if (job.sections) {
+                body = job.sections.map(s =>
+                    `<p class="entry-description"><strong>${esc(s.heading)}</strong></p>
+                     <ul class="entry-details">${(s.bullets||[]).map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`
+                ).join('');
+            }
+
+            return `<div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <h3 class="entry-title">${esc(job.title)}</h3>
+                        ${subtitleHtml}
+                    </div>
+                    <span class="entry-date">${esc(job.dates)}</span>
+                </div>
+                ${clientsHtml}
+                ${body}
+            </div>`;
+        }).join('');
+    }
+
+    function education(list) {
+        return (list || []).map(edu => {
+            const note = edu.note ? `<p class="entry-description">${esc(edu.note)}</p>` : '';
+            return `<div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <h3 class="entry-title">${esc(edu.degree)}</h3>
+                        <p class="entry-subtitle">${esc(edu.school)}</p>
+                    </div>
+                    <span class="entry-date">${esc(edu.dates)}</span>
+                </div>${note}</div>`;
+        }).join('');
+    }
+
+    function skillsGrid(list) {
+        return (list || []).map(cat => `
+            <div class="skill-category">
+                <h4 class="skill-category-title">${esc(cat.category)}</h4>
+                <div class="skill-tags">${cat.items.map(i=>`<span class="skill-tag">${esc(i)}</span>`).join('')}</div>
+            </div>`).join('');
+    }
+
+    function tags(items) {
+        return (items || []).map(i=>`<span class="skill-tag">${esc(i)}</span>`).join('');
+    }
+
+    // ── render full page ───────────────────────────────────────────────────────
+
+    function render(cv) {
+        const p   = cv.personal || {};
+        const c   = cv.contact  || {};
+        const seo = cv.seo      || {};
+
+        const photo     = esc(p.photo || 'assets/photo-square.png');
+        const photoWebp = photo.replace(/\.[^.]+$/, '.webp');
+        const titleTag  = `${esc(p.name)} | ${esc(p.title)}`;
+
+        // Update <head> dynamically
+        document.title = titleTag;
+        setMeta('description', seo.description || '');
+        setMeta('keywords',    seo.keywords    || '');
+        setMeta('author',      p.name          || '');
+        setOg('og:type',             'website');
+        setOg('og:title',            titleTag);
+        setOg('og:description',      seo.description || '');
+        setOg('og:url',              p.site_url || '');
+        setOg('og:image',            (p.site_url||'') + photo);
+        setOg('twitter:card',        'summary');
+        setOg('twitter:title',       titleTag);
+        setOg('twitter:description', seo.description || '');
+        setOg('twitter:image',       (p.site_url||'') + photo);
+
+        document.getElementById('cv-root').innerHTML = `
+        <header class="header">
+            <picture>
+                <source srcset="${photoWebp}" type="image/webp">
+                <img src="${photo}" alt="${esc(p.name)} - ${esc(p.title)} based in ${esc(p.location)}" class="profile-photo">
+            </picture>
+            <div class="header-content">
+                <h1 class="name">${esc(p.name)}</h1>
+                <p class="title">${esc(p.title)}</p>
+                <p class="tagline">${esc(p.tagline)}</p>
+            </div>
+            <div class="contact-bar">${contactBar(c, p)}</div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">About</h2>
+            <p class="about-text">${esc((cv.about||'').trim())}</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            ${experience(cv.experience)}
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            ${education(cv.education)}
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="skills-grid"><div class="skill-category"><div class="skill-tags">
+                ${tags(cv.certifications)}
+            </div></div></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Techstack</h2>
+            <div class="skills-grid">${skillsGrid(cv.skills)}</div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Languages</h2>
+            <div class="skills-grid"><div class="skill-category"><div class="skill-tags">
+                ${tags(cv.languages)}
+            </div></div></div>
+        </section>
+
+        <footer class="footer">
+            <p>${esc(p.footer || '')}</p>
+        </footer>`;
+
+        initUI(cv);
+    }
+
+    function setMeta(name, content) {
+        let el = document.querySelector(`meta[name="${name}"]`);
+        if (!el) { el = document.createElement('meta'); el.name = name; document.head.appendChild(el); }
+        el.content = content;
+    }
+    function setOg(prop, content) {
+        let el = document.querySelector(`meta[property="${prop}"]`);
+        if (!el) { el = document.createElement('meta'); el.setAttribute('property', prop); document.head.appendChild(el); }
+        el.content = content;
+    }
+
+    // ── UI behaviours ──────────────────────────────────────────────────────────
+
+    function initUI(cv) {
+        const p = cv.personal || {};
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const moonIcon    = document.getElementById('moon-icon');
+        const sunIcon     = document.getElementById('sun-icon');
+        const root        = document.documentElement;
+        const getTheme    = () => { try { return localStorage.getItem('theme'); } catch { return null; } };
+        const saveTheme   = t  => { try { localStorage.setItem('theme', t); }    catch {} };
+
+        if (getTheme() === 'dark' || (!getTheme() && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            root.setAttribute('data-theme', 'dark');
+            moonIcon.classList.add('hidden');
+            sunIcon.classList.remove('hidden');
+        }
+        themeToggle.addEventListener('click', () => {
+            const dark = root.getAttribute('data-theme') === 'dark';
+            if (dark) {
+                root.removeAttribute('data-theme'); saveTheme('light');
+                moonIcon.classList.remove('hidden'); sunIcon.classList.add('hidden');
+            } else {
+                root.setAttribute('data-theme', 'dark'); saveTheme('dark');
+                moonIcon.classList.add('hidden'); sunIcon.classList.remove('hidden');
+            }
+        });
+
+        // PDF download
+        document.getElementById('download-pdf').addEventListener('click', () => {
+            const isIOS     = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            if (isIOS)          alert('On iPhone/iPad:\n\n1. Tap Share (□↑)\n2. Tap "Print"\n3. Pinch outward on preview to save as PDF');
+            else if (isAndroid) { alert('Tip: Select "Save as PDF" as the printer.'); window.print(); }
+            else                { alert('Tip: In print dialog → "More settings" → disable "Headers and footers".'); window.print(); }
+        });
+
+        // Share
+        document.getElementById('share-btn').addEventListener('click', async () => {
+            const data = { title: `${p.name} | ${p.title}`, text: `Check out ${p.name}'s CV.`, url: window.location.href };
+            if (navigator.share) { try { await navigator.share(data); } catch {} }
+            else {
+                try { await navigator.clipboard.writeText(window.location.href); alert('Link copied!'); }
+                catch { prompt('Copy this link:', window.location.href); }
+            }
+        });
+    }
+
+    // ── boot: fetch cv.yaml and parse it ──────────────────────────────────────
+
+    // Fetch cv.yaml for live updates or show error if unavailable
+    (async () => {
+        try {
+            const response = await fetch('cv.yaml');
+            if (!response.ok) throw new Error('Failed to fetch cv.yaml');
+            const yamlData = await response.text();
+            render(jsyaml.load(yamlData));
+        } catch (error) {
+            console.error('Could not load cv.yaml:', error);
+            document.getElementById('cv-root').innerHTML = '<div id="cv-error">⚠️ Could not load CV data. Please ensure cv.yaml is available.</div>';
+        }
+    })();
+    </script>
+
+</body>
+</html>
