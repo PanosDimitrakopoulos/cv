@@ -27,6 +27,9 @@ contact:
   linkedin:
     label: "pndimi"
     url: "https://www.linkedin.com/in/pndimi/"
+  portfolio:
+    label: "Portfolio"
+    url: "https://panosdimitrakopoulos.github.io/Portfolio"
 
 # ---------- About ----------
 about: >
