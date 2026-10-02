@@ -6,16 +6,16 @@
 personal:
   name: "Panagiotis Dimitrakopoulos"
   title: "Software Engineer in Test | ISTQB Certified Test Automation Engineer"
-  tagline: "I like to solve problems!"
+  tagline: "Turning test plans into automated confidence"
   location: "Athens, Greece"
   photo: "assets/photo-square.png"
   site_url: "https://panosdimitrakopoulos.github.io/cv/"
-  footer: "© 2026 Panos Dimitrakopoulos. All rights reserved."
+  footer: "© 2026 Panos Dimitrakopoulos"
 
 # ---------- SEO ----------
 seo:
-  description: "Panagiotis Dimitrakopoulos - Software QA/Software Engineer in Test with expertise in Manual Testing and creating Testing Automation Solutions in a variety of frameworks."
-  keywords: "Software QA, Software Engineer in Test, Python, C#, Selenium, Playwright, SQL, MySQL, Cypress, Javascript"
+  description: "Panagiotis Dimitrakopoulos - Software Engineer in Test with nearly 7 years of experience in manual and automated testing across web, mobile and API, using Playwright, Cypress, Selenium and Karate."
+  keywords: "Software QA, Software Engineer in Test, Test Automation, Playwright, Cypress, Selenium, Karate, C#, Python, JavaScript, TypeScript, Java, SQL, API Testing, GitHub Actions, Jenkins"
 
 # ---------- Contact & Socials ----------
 contact:
@@ -33,91 +33,82 @@ contact:
 
 # ---------- About ----------
 about: >
-  ISTQB Certified Test Automation Engineer with more than 6 years of Software Testing experience in manual and automation frameworks, on API, Web, Android & iOS platforms.
+  ISTQB Advanced Level Test Automation Engineer with nearly 7 years of software testing experience
+  across web, Android, iOS and APIs. Built a Cypress automation framework from scratch,
+  automated UI and API testing with Selenium and Karate and currently writes Playwright (C#)
+  tests where I also authored the test plans for two new products.
 
 # ---------- Experience ----------
 experience:
   - title: "Software QA & Test Automation Engineer"
-    company: "Multiple Companies"
-    location: "Athens, Greece"
-    dates: "Nov 2019 - Present"
-    clients:
-      - name: "eFood"
-        dates: "Nov 2019 - Apr 2022"
-        location: "On-Site"
-      - name: "Vodafone"
-        dates: "May 2022 - Jun 2024"
-        location: "Remote"
-      - name: "Kaizen Gaming"
-        dates: "Jul 2024 - Present"
-        location: "Hybrid"
+    company: "Kaizen Gaming"
+    location: "Athens, Greece | Hybrid"
+    dates: "Jul 2024 - Present"
     bullets:
-      - "Designed, developed, and maintained end-to-end automated test frameworks using Playwright (C#), Selenium (Python), and Cypress (JavaScript)"
-      - "Performed manual testing across web and mobile platforms (Android & iOS), ensuring functionality, performance and user experience quality"
-      - "Built and executed API testing suites using Postman, Insomnia and Swagger for validation and integration testing"
-      - "Led and contributed to QA processes across the full SDLC, including test design, execution, defect tracking and release validation"
-      - "Managed CI/CD testing workflows, including Jenkins regression runs and automated pipelines"
-      - "Collaborated closely with cross-functional teams (engineering, product, design) to define QA strategies and ensure high-quality deliverables"
-      - "Acted as a key contributor in scaling QA practices, including mentoring team members and delegating tasks"
-      - "Played a foundational role in launching new projects such as the Social project on Kaizen Gaming & Notification Center by establishing testing strategies and automation from the ground up"
-      - "Utilized monitoring and logging tools (e.g., Kafka, Graylog, Splunk) to investigate issues and ensure system reliability"
-      - "Conducted a full, analytical Test Plan for the Social & Notification Center projects of Kaizen Gaming"
+      - "Authored the full test plan and the first automated test suites for two new products, Social and Notification Center"
+      - "Developed and maintained E2E automated tests in Playwright (C#), running in GitHub Actions CI pipelines"
+      - "Built API tests and validated services using Postman and Swagger"
+      - "Validated backend data with SQL queries via DBeaver, Microsoft Azure"
+      - "Performed manual testing across web, Android and iOS (Simulated and Real Devices)"
+      - "Investigated defects through Graylog logs and Kafka message flows"
+      - "Mentored QA colleagues and distributed testing tasks within the team"
 
-  - title: "Chief Editor, Content Creator"
-    company: "Multiple Media Outlets, Voluntary"
+  - title: "Software QA & Test Automation Engineer"
+    company: "Vodafone"
+    location: "Athens, Greece | Remote"
+    dates: "May 2022 - Jun 2024"
+    bullets:
+      - "Developed and maintained UI automated tests in Selenium (Python)"
+      - "Built automated API test suites with Karate (Java) and performed API testing with SoapUI"
+      - "Performed manual testing across web, Android and iOS (Simulated and Real Devices)"
+      - "Managed test cases and defects in HP ALM"
+      - "Monitored services and investigated issues using Splunk and Instana"
+
+  - title: "Software QA & Test Automation Engineer"
+    company: "eFood"
+    location: "Athens, Greece | On-Site"
+    dates: "Nov 2019 - Apr 2022"
+    bullets:
+      - "Built the E2E test automation framework from scratch using Cypress (JavaScript/TypeScript)"
+      - "Ran automated regression suites through Jenkins CI pipelines"
+      - "Performed manual web testing and API testing with Postman"
+      - "Managed test cases and test runs in TestRail"
+
+  - title: "Chief Editor & Content Creator"
+    company: "Gaming Media Outlets (Volunteer)"
     location: "Athens, Greece"
     dates: "Sep 2014 - Present"
     clients:
-      - name: "AltTtab.gr"
-        dates: "Nov 2019 - Apr 2022"
+      - name: "alt-tab.gr"
+        dates: "Sep 2014 - Jul 2020"
         location: "Remote"
       - name: "Joystick.com.gr"
-        dates: "May 2022 - Jun 2024"
+        dates: "Apr 2021 - Nov 2023"
         location: "Remote"
-      - name: "idoru.gr"
-        dates: "Jul 2024 - Present"
+      - name: "PressEnter.gr"
+        dates: "Nov 2025 - Present"
         location: "Remote"
     bullets:
-      - "Led content strategy and editorial planning for gaming-focused platforms, coordinating publishing pipelines and ensuring consistent, high-quality output"
-      - "Writing review articles and covering gaming news and industry trends, maintaining accuracy, clarity, and audience engagement"
-      - "Managed and mentored teams of content creators, reviewers and contributors, overseeing editorial standards"
-      - "Handled communication with PR agencies, distributors and partners for content acquisition, collaborations, and promotions"
-      - "Created multimedia content, including written articles and video presentations to showcase games and emerging technologies"
-      - "Conducted research on gaming industry developments to produce timely and relevant content"
-      - "Promoted game development teams and products through articles and social media distribution"
-      - "Conducted interviews with game developers and eSports teams"
-      - "Designed and executed manual QA testing for websites, including functionality, regression, and performance testing"
-      - "Created and maintained test scenarios, test cases, and test suites for complex site features and plugins"
-      - "Identified, reported, and prioritized bugs using tools such as ClickUp, ensuring proper tracking and resolution"
-      - "Collaborated with site owners to validate features and improve overall platform quality"
-      - "Performed performance analysis using tools like Lighthouse to optimize site efficiency and user experience"
+      - "Led editorial planning and managed teams of writers and reviewers for gaming media outlets"
+      - "Wrote reviews and news, interviewed game developers and eSports teams, and coordinated with PR agencies and publishers"
+      - "Performed manual QA on the outlets' websites: test case design, regression testing, bug tracking in ClickUp and performance audits with Lighthouse"
 
   - title: "Online Exams Invigilator"
     company: "PeopleCert"
     location: "Athens, Greece | On-Site"
     dates: "Dec 2017 - Jul 2018"
     bullets:
-      - "Exam invigilation through online web platforms on a worldwide scale. Invigilating exams for Axelos' modules such as PRINCE2, ITIL, DevOps, Resilia, MSP, M_o_R, etc"
-      - "Technical issue resolution via chat and phone contact"
-      - "Communication with candidates regarding technical issues, exam material receipt and handling"
+      - "Invigilated online certification exams worldwide for Axelos modules (PRINCE2, ITIL, DevOps and others)"
+      - "Resolved candidates' technical issues via chat and phone"
 
   - title: "Customer Support Team Leader, QA Tester"
     company: "Aventurine"
     location: "Athens, Greece | On-Site"
     dates: "Jul 2013 - Nov 2015"
     bullets:
-      - "Supporting customers answering incoming Kayako mails and tickets that concerned financial, technical and other issues"
-      - "Creating manuals for both the customer service department and the rest of the company"
-      - "Organization and maintenance of every platform necessary for the department (Kayako, Outlook, etc)"
-      - "Game support through live chat via the game environment, via forums and via Social Media (Facebook and Twitter)"
-      - "Checking existing accounts for rules violations or to block undesirable / unintended behavior"
-      - "Organizing Meetings among the department's members"
-      - "Creation, organization and maintenance of the Buddy Keys Recruitment Program, a new player testing program"
-      - "Conducting a monthly report on the performance of the department and its employees"
-      - "Conducting a summary report on any problems encountered in our services"
-      - "Participating and organizing  incorporate meetings"
-      - "Reproduce reported bugs and glitches, Investigate errors and reports from players,  Offering support for technical issues and issues related to the gameplay & document issues via Bugzilla"
-
+      - "Reproduced and investigated player-reported bugs and documented them in Bugzilla"
+      - "Created and ran the Buddy Keys program, recruiting new players for game testing"
+      - "Led the customer support team, handling technical and billing tickets via Kayako, live chat and social media"
 
 # ---------- Education ----------
 education:
@@ -128,29 +119,32 @@ education:
 
 # ---------- Certifications ----------
 certifications:
-  - "ISTQB Certfied Advanced Level Test Automation Engineer"
-  - "ISTQB® Certified Tester, Foundation Level, Issued May 2021"
+  - "ISTQB® Certified Tester Advanced Level, Test Automation Engineer, Issued Jan 2026"
+  - "ISTQB® Certified Tester Foundation Level, Issued May 2021"
   - "The Complete SQL Bootcamp: Go from Zero to Hero, Udemy"
 
 # ---------- Skills ----------
 skills:
-  - category: "Languages & Frameworks"
-    items: ["C#", "Python", "JavaScript", "HTML", "CSS", "Gherkin", "Markdown"]
+  - category: "Languages"
+    items: ["C#", "Python", "JavaScript", "TypeScript", "Java", "SQL", "Gherkin", "HTML", "CSS"]
 
   - category: "Test Automation"
-    items: ["Playwright", "Selenium", "Cypress", "Cucumber", "Karate"]
+    items: ["Playwright", "Selenium", "Cypress", "Karate", "Cucumber"]
 
-  - category: "API & Testing Tools"
-    items: ["Postman", "SwaggerUI", "Insomnia", "SoapUI", "HP ALM", "TestRail"]
+  - category: "API & Test Management"
+    items: ["Postman", "Swagger", "Insomnia", "SoapUI", "HP ALM", "TestRail"]
+
+  - category: "CI/CD & Cloud"
+    items: ["GitHub Actions", "Jenkins", "Microsoft Azure"]
 
   - category: "Databases & Messaging"
-    items: ["MongoDB", "BeaverDB", "RabbitMQ", "Kafka"]
+    items: ["MongoDB", "DBeaver", "Kafka", "RabbitMQ"]
 
-  - category: "Cloud & Infrastructure"
-    items: ["Microsoft Azure", "Graylog", "Splunk", "Instana", "Papertrail"]
+  - category: "Monitoring & Logging"
+    items: ["Graylog", "Splunk", "Instana", "Papertrail"]
 
   - category: "Dev Tools"
-    items: ["Git", "GitHub", "IntelliJ Rider", "ConfiguratorUI"]
+    items: ["Git", "GitHub", "JetBrains Rider"]
 
 # ---------- Languages ----------
 languages:
