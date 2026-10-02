@@ -1,13 +1,12 @@
 {
   "name": "cv",
-  "description": "Personal CV website for Panos Dimitrakopoulos",
+  "private": true,
   "scripts": {
-    "crop-photo": "node crop-photo.js",
-    "test-header": "node test-header.js",
-    "serve": "python3 -m http.server 8000"
+    "build": "node scripts/build-cv.mjs"
   },
   "dependencies": {
-    "playwright": "^1.57.0",
-    "sharp": "^0.34.5"
+    "docx": "^9.5.0",
+    "js-yaml": "4.1.0",
+    "playwright": "^1.50.0"
   }
 }
