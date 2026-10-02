@@ -68,7 +68,8 @@ function contactParagraph(c, loc) {
   const link = (label, url) => new ExternalHyperlink({ link: url, children: [t(label, { size: 19, color: ACCENT })] });
   if (c.email) parts.push(link(c.email, `mailto:${c.email}`));
   if (c.mobile) parts.push(t(c.mobile, { size: 19 }));
-  for (const k of ['linkedin', 'github', 'portfolio']) if (c[k]) parts.push(link(c[k].label, c[k].url));
+  const shortUrl = u => u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
+  for (const k of ['linkedin', 'github', 'linktree', 'portfolio']) if (c[k]?.url) parts.push(link(shortUrl(c[k].url), c[k].url));
   if (loc) parts.push(t(loc, { size: 19 }));
   const children = [];
   parts.forEach((p, i) => { if (i) children.push(t('  |  ', { size: 19, color: '888888' })); children.push(p); });

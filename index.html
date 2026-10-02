@@ -101,6 +101,9 @@
 
     const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     const DIV = `<span class="divider">|</span>`;
+    // Short label on screen, full address in the downloaded PDF
+    const shortUrl = u => String(u ?? '').replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
+    const linkText = o => `<span class="screen-only">${esc(o.label || shortUrl(o.url))}</span><span class="print-only">${esc(shortUrl(o.url))}</span>`;
 
     // ── section builders ───────────────────────────────────────────────────────
 
@@ -111,13 +114,13 @@
         if (c.mobile)
             parts.push(`<a href="tel:${esc(c.mobile.replace(/\s/g,''))}">${ICONS.mobile} ${esc(c.mobile)}</a>`);
         if (c.linkedin?.url)
-            parts.push(`<a href="${esc(c.linkedin.url)}" target="_blank" rel="noopener noreferrer">${ICONS.linkedin} ${esc(c.linkedin.label)}</a>`);
+            parts.push(`<a href="${esc(c.linkedin.url)}" target="_blank" rel="noopener noreferrer">${ICONS.linkedin} ${linkText(c.linkedin)}</a>`);
         if (c.github?.url)
-            parts.push(`<a href="${esc(c.github.url)}" target="_blank" rel="noopener noreferrer">${ICONS.github} ${esc(c.github.label)}</a>`);
+            parts.push(`<a href="${esc(c.github.url)}" target="_blank" rel="noopener noreferrer">${ICONS.github} ${linkText(c.github)}</a>`);
         if (c.linktree?.url)
-            parts.push(`<a href="${esc(c.linktree.url)}" target="_blank" rel="noopener noreferrer">${ICONS.linktree} ${esc(c.linktree.label)}</a>`);
+            parts.push(`<a href="${esc(c.linktree.url)}" target="_blank" rel="noopener noreferrer">${ICONS.linktree} ${linkText(c.linktree)}</a>`);
         if (c.portfolio?.url)
-            parts.push(`<a href="${esc(c.portfolio.url)}" target="_blank" rel="noopener noreferrer">${ICONS.portfolio} ${esc(c.portfolio.label)}</a>`);
+            parts.push(`<a href="${esc(c.portfolio.url)}" target="_blank" rel="noopener noreferrer">${ICONS.portfolio} ${linkText(c.portfolio)}</a>`);
         const contactLinks = parts.join(DIV);
         const location = personal.location ? `<span class="location">${ICONS.location} ${esc(personal.location)}</span>` : '';
         return contactLinks + (location ? DIV + location : '');
@@ -318,6 +321,11 @@
             }
         });
 
+
+        // Always fetch the latest generated files (bypass browser/CDN cache)
+        document.querySelectorAll('.download-btn').forEach(a => {
+            a.href = a.getAttribute('href').split('?')[0] + '?v=' + Date.now();
+        });
 
         // Share
         document.getElementById('share-btn').addEventListener('click', async () => {
