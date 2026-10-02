@@ -748,7 +748,6 @@ body {
 @media print {
     .skills-grid { grid-template-columns: 1fr !important; }
 
-    /* Readable print sizes (override the smaller sizes above) */
     .name { font-size: 18pt; }
     .title { font-size: 10.5pt; }
     .contact-bar a, .contact-bar .location, .contact-bar .divider { font-size: 8.5pt; }
@@ -759,12 +758,12 @@ body {
     .client-pill, .client-name, .client-dates, .client-loc, .skill-tag { font-size: 8.5pt; }
 }
 
-/* Download buttons (links to the generated PDF / DOCX) */
 .download-btn {
     position: relative;
     text-decoration: none;
     color: inherit;
 }
+
 .download-label {
     position: absolute;
     bottom: -2px;
