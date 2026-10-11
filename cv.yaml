@@ -6,7 +6,6 @@
 personal:
   name: "Panagiotis Dimitrakopoulos"
   title: "Software Engineer in Test | ISTQB Certified Test Automation Engineer"
-  tagline: "Turning test plans into automated confidence"
   location: "Athens, Greece"
   photo: "assets/photo-square.png"
   site_url: "https://panosdimitrakopoulos.github.io/cv/"
@@ -14,13 +13,12 @@ personal:
 
 # ---------- SEO ----------
 seo:
-  description: "Panagiotis Dimitrakopoulos - Software Engineer in Test with nearly 7 years of experience in manual and automated testing across web, mobile and API, using Playwright, Cypress, Selenium and Karate."
+  description: "Panagiotis Dimitrakopoulos - Software Engineer in Test with 7 years of experience in manual and automated testing across web, mobile and API, using Playwright, Cypress, Selenium and Karate."
   keywords: "Software QA, Software Engineer in Test, Test Automation, Playwright, Cypress, Selenium, Karate, C#, Python, JavaScript, TypeScript, Java, SQL, API Testing, GitHub Actions, Jenkins"
 
 # ---------- Contact & Socials ----------
 contact:
   email: "diminpanos@gmail.com"
-  mobile: "+30 698 82 17 569"
   github:
     label: "PanosDimitrakopoulos"
     url: "https://github.com/PanosDimitrakopoulos"
@@ -36,7 +34,7 @@ about: >
   ISTQB Advanced Level Test Automation Engineer with nearly 7 years of software testing experience
   across web, Android, iOS and APIs. Built a Cypress automation framework from scratch,
   automated UI and API testing with Selenium and Karate and currently writes Playwright (C#)
-  tests where I also authored the test plans for two new products.
+  tests where also authored the test plans for two new products.
 
 # ---------- Experience ----------
 experience:
@@ -45,8 +43,8 @@ experience:
     location: "Athens, Greece | Hybrid"
     dates: "Jul 2024 - Present"
     bullets:
-      - "Authored the full test plan and the first automated test suites for two new products, Social and Notification Center"
-      - "Developed and maintained E2E automated tests in Playwright (C#), running in GitHub Actions CI pipelines"
+      - "Authored the full test plan and the first automated test suites for two new products, Social and Notification Center, covering more than 400 test cases before launch"
+      - "Developed and maintained more than 50 E2E automated tests in Playwright (C#), running in GitHub Actions CI pipelines"
       - "Built API tests and validated services using Postman and Swagger"
       - "Validated backend data with SQL queries via DBeaver, Microsoft Azure"
       - "Performed manual testing across web, Android and iOS (Simulated and Real Devices)"
@@ -61,7 +59,6 @@ experience:
       - "Developed and maintained UI automated tests in Selenium (Python)"
       - "Built automated API test suites with Karate (Java) and performed API testing with SoapUI"
       - "Performed manual testing across web, Android and iOS (Simulated and Real Devices)"
-      - "Managed test cases and defects in HP ALM"
       - "Monitored services and investigated issues using Splunk and Instana"
 
   - title: "Software QA & Test Automation Engineer"
@@ -69,13 +66,22 @@ experience:
     location: "Athens, Greece | On-Site"
     dates: "Nov 2019 - Apr 2022"
     bullets:
-      - "Built the E2E test automation framework from scratch using Cypress (JavaScript/TypeScript)"
-      - "Ran automated regression suites through Jenkins CI pipelines"
+      - - "Built the E2E test automation framework from scratch using Cypress (TypeScript), with custom commands, covering ~40 regression scenarios"
+      - "Ran automated regression suites through Jenkins CI pipelines, cutting regression time from 1 day to 5 hours"
       - "Performed manual web testing and API testing with Postman"
       - "Managed test cases and test runs in TestRail"
 
+  - title: "Customer Support Team Leader, QA Tester"
+    company: "Aventurine"
+    location: "Athens, Greece | On-Site"
+    dates: "Jul 2013 - Nov 2015"
+    bullets:
+      - "Reproduced and investigated player-reported bugs and documented them in Bugzilla"
+      - "Created and ran the Buddy Keys program, recruiting new players for game testing"
+      - "Led the customer support team, handling technical and billing tickets via Kayako, live chat and social media"
+
   - title: "Chief Editor & Content Creator"
-    company: "Gaming Media Outlets (Volunteer)"
+    company: "Gaming Media Outlets (Personal Projects)"
     location: "Athens, Greece"
     dates: "Sep 2014 - Present"
     clients:
@@ -93,23 +99,6 @@ experience:
       - "Wrote reviews and news, interviewed game developers and eSports teams, and coordinated with PR agencies and publishers"
       - "Performed manual QA on the outlets' websites: test case design, regression testing, bug tracking in ClickUp and performance audits with Lighthouse"
 
-  - title: "Online Exams Invigilator"
-    company: "PeopleCert"
-    location: "Athens, Greece | On-Site"
-    dates: "Dec 2017 - Jul 2018"
-    bullets:
-      - "Invigilated online certification exams worldwide for Axelos modules (PRINCE2, ITIL, DevOps and others)"
-      - "Resolved candidates' technical issues via chat and phone"
-
-  - title: "Customer Support Team Leader, QA Tester"
-    company: "Aventurine"
-    location: "Athens, Greece | On-Site"
-    dates: "Jul 2013 - Nov 2015"
-    bullets:
-      - "Reproduced and investigated player-reported bugs and documented them in Bugzilla"
-      - "Created and ran the Buddy Keys program, recruiting new players for game testing"
-      - "Led the customer support team, handling technical and billing tickets via Kayako, live chat and social media"
-
 # ---------- Education ----------
 education:
   - degree: "Bachelor in Computer Systems Science"
@@ -121,7 +110,7 @@ education:
 certifications:
   - "ISTQB® Certified Tester Advanced Level, Test Automation Engineer, Issued Jan 2026"
   - "ISTQB® Certified Tester Foundation Level, Issued May 2021"
-  - "The Complete SQL Bootcamp: Go from Zero to Hero, Udemy"
+
 
 # ---------- Skills ----------
 skills:
